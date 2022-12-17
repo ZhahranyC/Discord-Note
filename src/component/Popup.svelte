@@ -1,7 +1,7 @@
 <script>
     import {v4 as uuidv4 } from 'uuid'
 
-    import { fade } from 'svelte/transition';
+    import { fade, fly, slide } from 'svelte/transition';
     import { useStorage, filter, filteredNotes } from '../store/store.js'
 
     export let popupStatus
