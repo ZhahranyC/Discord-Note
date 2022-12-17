@@ -21,7 +21,7 @@
         }}
         >
           <!-- Card -->
-          <Note {note} (note.id)/>
+          <Note {note}/>
         </div>
       {/each}   
     </ul>

@@ -15,7 +15,6 @@
     $filter = `${$favStatus}-${$orderByStatus}`
     let tempNotes = $notes
     filteredNotes.applyFilter($filter, tempNotes)
-    console.log($filteredNotes)
   }
 
   function changeOrderByStatus() {
