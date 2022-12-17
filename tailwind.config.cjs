@@ -18,7 +18,7 @@ module.exports = {
       },
       width: {
         'container': 'min(1080px, 100% - 88px)',
-        'card': 'calc(1080px/3)'
+        'card': 'calc(1040px/3)'
       },
       gridTemplateColumns: {
         'autoMax3': 'repeat(auto-fill, calc(1040px/3))'
