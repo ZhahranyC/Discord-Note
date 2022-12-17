@@ -54,7 +54,7 @@ class="flex flex-col justify-between h-[372px] p-[27px] bg-purpleDiscord rounded
         <h3 class="text-lg">{note.title}</h3>
       </div>
       <p class="text-xs text-white/40 pt-2">{note.dateCreated}</p>
-      <p class="pt-1 line-clamp-10 text-sm text-mainGray">{note.description}</p>
+      <p class="pt-1 line-clamp-8 text-sm text-mainGray">{note.description}</p>
     </div>
 
     <!-- Favorite Button -->
