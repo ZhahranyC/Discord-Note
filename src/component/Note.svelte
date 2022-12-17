@@ -1,5 +1,5 @@
 <script>
-    import { fly } from 'svelte/transition'
+    import { fly, fade, slide } from 'svelte/transition'
     import EditPopup from "./EditPopup.svelte";
     import { useStorage, filter, filteredNotes } from '../store/store.js'
     import ExpandPopup from './ExpandPopup.svelte';
@@ -10,6 +10,9 @@
     let settingStatus = false
     let editStatus = false
     let expandStatus = false
+    $: mouse = { x:0, y:0 }
+    $: topPosition = ''
+    $: leftPosition = ''
 
     function toggleSetting() {
         settingStatus = !settingStatus
@@ -43,8 +46,16 @@
         filteredNotes.applyFilter($filter, $notes)
     }
 
-    function toggleExpandStatus() {
+    function toggleExpandStatus(e) {
       expandStatus = !expandStatus
+    }
+
+    function handleMouse(e) {
+      mouse.x = e.clientX
+      mouse.y = e.clientY
+
+      topPosition = mouse.y - 30
+      leftPosition = mouse.x + 10
     }
 </script>
 
@@ -53,12 +64,21 @@
 <EditPopup {note} {editStatus} {toggleEdit}/>
 <ExpandPopup {note} {expandStatus} {toggleExpandStatus}/>
 
-<div class="flex justify-center items-center h-[372px]">
+{#if (mouse.x != 0 && mouse.y != 0)}
+  <div class={`fixed z-30 text-sm text-mainDark bg-white/50 py-1 px-3 rounded-t-2xl rounded-br-2xl drop-shadow-md `} style={`top:${topPosition}px; left:${leftPosition}px`}
+  > double click to expand </div>
+{/if}
+
+<div class="flex justify-center items-center h-[372px]"
+>
   <li 
   class="flex flex-col justify-between h-[372px] w-card p-[27px] bg-purpleDiscord rounded-lg drop-shadow-lg absolute hover:h-[392px] hover:w-[360px] transition-all hover:drop-shadow-2xl"
-  on:dblclick={toggleExpandStatus}
+  on:dblclick={() => {expandStatus = !expandStatus}}
   >
-      <div class="bg-subDark p-3 rounded-md overflow-hidden h-auto">
+      <div class="bg-subDark p-3 rounded-md overflow-hidden h-auto"
+      on:mousemove={(e) => {handleMouse(e)}}
+      on:mouseleave={() => {mouse.x = 0; mouse.y = 0}}
+      >
         <div class="pb-1 border-b-2 border-purpleDiscord flex justify-between items-center">
           <h3 class="text-lg line-clamp-1">{note.title}</h3>
         </div>
