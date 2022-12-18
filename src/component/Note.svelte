@@ -65,7 +65,7 @@
 <ExpandPopup {note} {expandStatus} {toggleExpandStatus}/>
 
 {#if (mouse.x != 0 && mouse.y != 0)}
-  <div class={`fixed z-30 text-sm text-mainDark bg-white/50 py-1 px-3 rounded-t-2xl rounded-br-2xl drop-shadow-md `} style={`top:${topPosition}px; left:${leftPosition}px`}
+  <div class='fixed flex justify-center z-30 text-sm text-mainDark bg-white/50 py-1 px-3 rounded-t-2xl rounded-br-2xl drop-shadow-md w-48' style={`top:${topPosition}px; left:${leftPosition}px`}
   > double click to expand </div>
 {/if}
 
